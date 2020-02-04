@@ -21,4 +21,19 @@ after_success:
     - docker push storerjeremy/multi-nginx
     - docker push storerjeremy/multi-server
     - docker push storerjeremy/multi-worker
+
+deploy:
+    edge: true
+    provider: elasticbeanstalk
+    region: us-east-2
+    app: multi-docker
+    env: MultiDocke-env
+    bucket_name: elasticbeanstalk-us-east-2-240610569662
+    bucket_path: docker-multi
+    on:
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    # secret_access_key: $AWS_SECRET_KEY  ## OLD WAY
+    #     secure: $AWS_ACCESS_KEY  ## OLD WAY
     
